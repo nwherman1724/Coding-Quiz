@@ -1,14 +1,14 @@
 var quiz = document.getElementById('quiz');
-var answerEl = document.querySelectorAll('.answer');
+var answerEls = document.querySelectorAll('.answer');
 var questionEl = document.getElementById('question');
 var a_text = document.getElementById('a_text');
 var b_text = document.getElementById('b_text');
 var c_text = document.getElementById('c_text');
 var d_text = document.getElementById('d_text');
-var submit = document.getElementById('submit');
+var submitBtn = document.getElementById('submit');
 
 //Array containing questions, possible answers, and answers
-var questions = [
+var quizQuestions = [
 {
     question: "What does HTML stand for?",
     a: "Hypertext Markup Language",
@@ -18,7 +18,7 @@ var questions = [
     correct: "a",
 },
 {
-    question: "Which of the following tag is used for inserting the largest heading in HTML?",
+    question: "Which of the following tags is used for inserting the largest heading in HTML?",
     a: "<h5>",
     b: "<h1>",
     c: "<h3>",
@@ -85,13 +85,20 @@ var questions = [
 
 //question resources: https://www.javatpoint.com/html-mcq, https://www.javatpoint.com/css-mcq
 
-var questionIndex = 0;
+var currentQuestion = 0;
 var score = 0;
 
-function loadQuiz(){
-    var currentQuestion = questions[questionIndex];
+loadQuiz();
 
-    questionEl.innerText = currentQuestion.question;
+function loadQuiz(){
+    var displayedQuestion = quizQuestions[currentQuestion]
+
+    console.log(displayedQuestion.question);
+
+    questionEl.innerText = displayedQuestion.question;
+    a_text.innerText =displayedQuestion.a;
+    b_text.innerText =displayedQuestion.b;
+    c_text.innerText =displayedQuestion.c;
+    d_text.innerText =displayedQuestion.d;
 }
 
-loadQuiz();
