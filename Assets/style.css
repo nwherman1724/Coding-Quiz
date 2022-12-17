@@ -1,0 +1,45 @@
+body {
+    /* centers text in the middle of the view port*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+
+    /*Sets background color*/
+    background-color: rebeccapurple;
+}
+
+/* Styles the container around the question, answer options, and submit button*/
+.quiz-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    width: 600px;
+    overflow: hidden;
+}
+
+.quiz-header {
+    padding: 5%;
+}
+
+h2 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 20px;
+    margin: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    padding: 7px;
+}
