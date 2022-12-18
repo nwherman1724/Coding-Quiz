@@ -91,13 +91,14 @@ var quizQuestions = [
 var currentQuestion = 0;
 var score = 0;
 
-//loadQuestion();
-
+//when start button in clicked a question is loaded and a 60 second timer starts
 startBtn.addEventListener('click', () => {
     loadQuestion();
     startTimer(60);
 } );
 
+
+//function that takes in seconds and subtracts one on a 1 second interval
 function startTimer(seconds) {
     var counter = seconds;
 
@@ -107,6 +108,7 @@ function startTimer(seconds) {
 
         timer.innerText = counter;
 
+        // if timer hits 0 game over shows on the alert
         if(counter < 0) {
             clearInterval(interval);
             alert("GAME OVER!")
