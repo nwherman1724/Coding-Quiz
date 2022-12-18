@@ -97,10 +97,10 @@ startBtn.addEventListener('click', () => {
     startTimer(60);
 } );
 
-
+var counter;
 //function that takes in seconds and subtracts one on a 1 second interval
 function startTimer(seconds) {
-    var counter = seconds;
+    counter = seconds;
 
     var interval = setInterval(() => {
         console.log(counter);
@@ -132,6 +132,8 @@ function loadQuestion(){
     b_text.innerText =displayedQuestion.b;
     c_text.innerText =displayedQuestion.c;
     d_text.innerText =displayedQuestion.d;
+
+    startBtn.disabled = true;
 }
 
 // function that unchecks a box when questions load
@@ -162,7 +164,8 @@ function handleSubmit() {
         // if the selection matches correct then the score increases by 1.
         if(answer === quizQuestions[currentQuestion].correct){
             score++;
-        } 
+        } else
+            counter = counter - 10;
 
         currentQuestion++;
 
