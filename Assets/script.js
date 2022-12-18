@@ -6,6 +6,8 @@ var b_text = document.getElementById('b_text');
 var c_text = document.getElementById('c_text');
 var d_text = document.getElementById('d_text');
 var submitBtn = document.getElementById('submit');
+var startBtn = document.getElementById('start');
+var timer = document.getElementById('countdown')
 
 //Array containing questions, possible answers, and answers
 var quizQuestions = [
@@ -74,7 +76,7 @@ var quizQuestions = [
     correct: "a"
 },
 {
-    question: "Which is the correct way to write a comment  a single line in Javascript?",
+    question: "Which is the correct way to write a single linecomment in Javascript?",
     a: "Using /* and */",
     b: "Using // and //",
     c: "Using </-- and -->",
@@ -89,7 +91,31 @@ var quizQuestions = [
 var currentQuestion = 0;
 var score = 0;
 
-loadQuestion();
+//loadQuestion();
+
+startBtn.addEventListener('click', () => {
+    loadQuestion();
+    startTimer(60);
+} );
+
+function startTimer(seconds) {
+    var counter = seconds;
+
+    var interval = setInterval(() => {
+        console.log(counter);
+        counter--;
+
+        timer.innerText = counter;
+
+        if(counter < 0) {
+            clearInterval(interval);
+            alert("GAME OVER!")
+        }
+    }, 1000)
+
+    
+
+}
 
 // function that gets a question and answer options from the array and prints it to the screen
 function loadQuestion(){
@@ -106,10 +132,12 @@ function loadQuestion(){
     d_text.innerText =displayedQuestion.d;
 }
 
+// function that unchecks a box when questions load
 function clearSelection() {
     answerEls.forEach(answerEl => answerEl.checked = false);
 }
 
+// function that gets the answer option selected
 function getSelection() {
     var answer;
 
@@ -122,24 +150,35 @@ function getSelection() {
     return answer;
 }
 
+//documentation for .forEach: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 
-submitBtn.addEventListener('click', () => {
+
+function handleSubmit() {
     const answer = getSelection();
     
     if(answer) {
+        // if the selection matches correct then the score increases by 1.
         if(answer === quizQuestions[currentQuestion].correct){
             score++;
-        }
+        } 
 
         currentQuestion++;
 
+        //the next question is loaded until the question are all answered
         if(currentQuestion < quizQuestions.length) {
             loadQuestion();
-        } else {
-            quiz.innerHTML = `<h2>You answered correctly at ${score}/${quizQuestions.length} questions</h2>
+        } 
+        
+        //if all the questions are answered pring the score to the screen.
+        //upon reload click reloa the quiz.
+        else {
+            quiz.innerHTML = `<h2>You answered ${score}/${quizQuestions.length} questions correctly.</h2>
 
-            <button onclick = "location.reload()">Reload</button>
-            `
+            <button onclick = "location.reload()">Reload</button>`
         }
     }
-})
+}
+
+// when the submit button is clicked the getSelection function runs
+submitBtn.addEventListener('click', handleSubmit)
+
