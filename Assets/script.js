@@ -85,13 +85,17 @@ var quizQuestions = [
 
 //question resources: https://www.javatpoint.com/html-mcq, https://www.javatpoint.com/css-mcq
 
+
 var currentQuestion = 0;
 var score = 0;
 
-loadQuiz();
+loadQuestion();
 
-function loadQuiz(){
-    var displayedQuestion = quizQuestions[currentQuestion]
+// function that gets a question and answer options from the array and prints it to the screen
+function loadQuestion(){
+    clearSelection();
+
+    var displayedQuestion = quizQuestions[currentQuestion];
 
     console.log(displayedQuestion.question);
 
@@ -102,3 +106,40 @@ function loadQuiz(){
     d_text.innerText =displayedQuestion.d;
 }
 
+function clearSelection() {
+    answerEls.forEach(answerEl => answerEl.checked = false);
+}
+
+function getSelection() {
+    var answer;
+
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id;
+        }
+    })
+
+    return answer;
+}
+
+
+submitBtn.addEventListener('click', () => {
+    const answer = getSelection();
+    
+    if(answer) {
+        if(answer === quizQuestions[currentQuestion].correct){
+            score++;
+        }
+
+        currentQuestion++;
+
+        if(currentQuestion < quizQuestions.length) {
+            loadQuestion();
+        } else {
+            quiz.innerHTML = `<h2>You answered correctly at ${score}/${quizQuestions.length} questions</h2>
+
+            <button onclick = "location.reload()">Reload</button>
+            `
+        }
+    }
+})
