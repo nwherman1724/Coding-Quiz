@@ -12,7 +12,7 @@
 
 This is the fourth Module challenge in the MSU Full-Stack coding bootcamp. It will exercise knowledge of HTML, CSS, and Git/Github. The objective of this project is to create a timed quiz and store the scores onto a leaderboard. The user story and acceptance criteria for the project have their own sections below.
 
-Github Pages Link: 
+Github Pages Link: https://nwherman1724.github.io/Coding-Quiz/
 
 ## User Story
 
@@ -40,11 +40,11 @@ THEN I can save my initials and score
 
 ## Screenshots
 
-![Alt text](assets/images/Screenshot-1.png)
+![Alt text](./assets/images/Screenshot-1.png)
 
-![Alt text](assets/images/Screenshot-2.png)
+![Alt text](./assets/images/Screenshot-2.png)
 
-![Alt text](assets/images/Screenshot-3.png)
+![Alt text](./assets/images/Screenshot-3.png)
 
 ## Credits
 
