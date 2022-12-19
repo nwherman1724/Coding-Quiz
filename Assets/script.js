@@ -180,6 +180,14 @@ function handleSubmit() {
             quiz.innerHTML = `<h2>You answered ${score}/${quizQuestions.length} questions correctly.</h2>
 
             <button onclick = "location.reload()">Reload</button>`
+
+            const input = document.createElement("input");
+            input.setAttribute("type", "text");
+            document.body.children[0].children[1].appendChild(input);
+
+            const button = document.createElement("button");
+            button.textContent = "Enter Score";
+            document.body.children[0].children[1].appendChild(button);
         }
     }
 }
@@ -187,3 +195,37 @@ function handleSubmit() {
 // when the submit button is clicked the getSelection function runs
 submitBtn.addEventListener('click', handleSubmit)
 
+// local storage JSON.stringify
+// December 12th class
+
+//after last question answered add input for initials
+// and submit button
+
+// make my input and submit
+//save input data and score into an object
+//push object into an array
+//stringify object so it can set to local storage
+//get it from local storage to print to the page
+
+
+function updateScores(score, initials){
+    var existingScores = JSON.parse(localStorage.getItem("highScores"));
+    var allScores =  existingScores || [];
+    
+    var current = {
+            score: score,
+            initials: initials
+        }
+    
+    allScores.push(current);
+    
+    localStorage.setItem("highScores", JSON.stringify(allScores));
+    }
+
+
+//initialize array
+//push initials and score into array
+
+//store array into loacal memery
+//sort array from highest to lowest score
+//display array on a leaderboard
